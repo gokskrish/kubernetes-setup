@@ -1,7 +1,10 @@
 # Setup Kubernetes Nodes
 This setup was tested on AWS EC2 instances with ubuntu
 
-## Setup Hostname
+## 1. Pre-Reqs on all Nodes
+Use k8s_pre-req-script.sh and jump to Step-2 (On K8S Master)
+
+### Setup Hostname
 ```
 sudo hostnamectl set-hostname "master.example.net"
 ```
@@ -13,16 +16,6 @@ To hostnames to take effect
 ```
 exec bash
 ```
-
-### Update /etc/hosts file in each node
-```
-10.193.164.247 master.example.net master
-10.193.164.196 node1.example.net node1
-10.193.164.62 node2.example.net node2
-```
-
-## 1. Pre-Reqs on all Nodes
-Use k8s_pre-req-script.sh and jump to Step-2 (On K8S Master)
 
 ### Disable Swap & Add kernal Params
 
@@ -116,10 +109,24 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 ## 2. On K8S Master
+
+### Update /etc/hosts file in Master & each node
+```
+10.193.164.247 master.example.net master
+10.193.164.196 node1.example.net node1
+10.193.164.62 node2.example.net node2
+```
+
 ### Run kubeadm command
 
+Initialize Master
 ```
 sudo kubeadm init --control-plane-endpoint=master.example.net
+```
+
+or to regenerate token for works
+```
+kubeadm token create --print-join-command
 ```
 
 Note the output to use in worker-nodes to join this cluster
