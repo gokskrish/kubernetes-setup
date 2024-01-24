@@ -180,7 +180,12 @@ kubectl edit service/kubernetes-dashboard -n kubernetes-dashboard
 
 Create Dash-Admin user using k8s_dash_admin-user.yaml file
 
-# Other Commands		
+# Other Commands
+Enable Pods to be deployed on Master
+```
+kubectl taint node <master-node> node-role.kubernetes.io/control-plane:NoSchedule-
+```
+
 Token Create 
 ```
 kubectl -n kubernetes-dashboard create token admin-user
