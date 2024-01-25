@@ -108,6 +108,16 @@ sudo apt install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
+Install fish shell (Optional)
+```
+sudo apt-add-repository -y ppa:fish-shell/release-3
+
+sudo apt update
+
+sudo apt install fish
+
+```
+
 ## 2. On K8S Master
 
 ### Update /etc/hosts file in Master & each node
@@ -181,15 +191,22 @@ kubectl edit service/kubernetes-dashboard -n kubernetes-dashboard
 Create Dash-Admin user using k8s_dash_admin-user.yaml file
 
 # Other Commands
+Set FISH as default shell
+```
+sudo chsh -s /usr/bin/fish
+```
+
 Enable Pods to be deployed on Master
 ```
 kubectl taint node <master-node> node-role.kubernetes.io/control-plane:NoSchedule-
 ```
 
 Token Create 
+(alternatively use admin-user-dash-k8s.yaml)
 ```
 kubectl -n kubernetes-dashboard create token admin-user
 ```
+
 Token Retrieve: 
 ```
 kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d

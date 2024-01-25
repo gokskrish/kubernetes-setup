@@ -27,3 +27,7 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 sudo apt update
 sudo apt install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
+#install fish shell
+sudo apt-add-repository -y ppa:fish-shell/release-3
+sudo apt update
+sudo apt -y install fish
