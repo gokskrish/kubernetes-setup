@@ -180,7 +180,7 @@ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/
 ## 5. Install Kubernetes Dashboard
 Install K8S Dashboard
 ```
-https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 ```
 
 Allow external use via NodePort (change ClusterIP to NodePort and add a nodePort param from below command)
