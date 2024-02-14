@@ -1,4 +1,4 @@
-sudo hostnamectl set-hostname "node1" 
+sudo hostnamectl set-hostname "node1"
 sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 sudo tee /etc/modules-load.d/containerd.conf <<EOF
